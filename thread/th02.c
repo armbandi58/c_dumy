@@ -72,17 +72,17 @@ int main(int argc, char *argv[])
 
 	pthread_create(&th00, NULL, th00_func, NULL);
 	pthread_create(&th01, NULL, th01_func, NULL);
-	pthread_create(&th02, NULL, th02_func, NULL);
+	//pthread_create(&th02, NULL, th02_func, NULL);
 
 	s0 = sem_open(semname_0, O_CREAT, 0777, 0);
 	if(s0 == SEM_FAILED){
-		fprintf(stderr, "%s\n", "ERROR creating semaphore semname1");
+		fprintf(stderr, "%s\n", "ERROR creating semaphore semname_0");
       	exit(EXIT_FAILURE);
 	}
 
 	s1 = sem_open(semname_1, O_CREAT, 0777, 0);
 	if(s1 == SEM_FAILED){
-		fprintf(stderr, "%s\n", "ERROR creating semaphore semname1");
+		fprintf(stderr, "%s\n", "ERROR creating semaphore semname_1");
       	exit(EXIT_FAILURE);
 	}
 /*
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 
 	pthread_join(th00, &status);
 	pthread_join(th01, &status);
-	pthread_join(th02, &status);
+	//pthread_join(th02, &status);
 
 	sem_unlink(semname_0);
 	sem_unlink(semname_1);
