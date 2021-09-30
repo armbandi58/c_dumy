@@ -1,5 +1,7 @@
 #include "main.h"
 #include "triangle.h"
+#include "list_base.h"
+#include "komplex.h"
 
 int main(int argc, char *argv[]){
 
@@ -48,7 +50,7 @@ int main(int argc, char *argv[]){
 
 	triangle_length(asd0, &len);
 //	triangle_length(asd0, &len);
-	printf("asd0: %d,", len);
+	printf("asd0: %d.\n", len);
 //	triangle_length(asd1, &len);
 //	printf("asd1: %d.\n", len);
 
@@ -57,6 +59,29 @@ int main(int argc, char *argv[]){
 //	free_list_triangle(asd1);
 
 	//printf("%f\n",triangle_Magassag(8.3,32.4));
+
+	comp_list *list_comp = NULL;
+	float tmp_09 = 2.3, tmp_08 = 5.6;
+
+	for(u8 i = 8; i > 0; i--){
+		list_comp = push_backward_complex(list_comp, tmp_09, tmp_08);
+		tmp_09 += 0.3;
+		tmp_08 += 0.7;
+	}
+	comp_list_print(list_comp);
+	printf("\t=======\n");
+
+	tmp_09 = 67.8;
+	tmp_08 = 45.9;
+	for(u8 i = 8; i > 0; i--){
+		list_comp = push_forward_complex(list_comp, tmp_08, tmp_09);
+		tmp_09 += 0.7;
+		tmp_08 -= 1.2;
+	}
+	comp_list_print(list_comp);
+	
+	comp_list_freelist(list_comp);
+
 	
 	return 0;
 }

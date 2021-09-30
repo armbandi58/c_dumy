@@ -37,7 +37,7 @@ list_triangle *list_triangle_pushbackward(list_triangle *l0, float a, float b, f
 void print_list_triangle(list_triangle *l0){
 	list_triangle *p = l0;
 	while(p != NULL){
-		printf("%.2f, %.2f, %.2f, %.2f, %.2f, %.2f\n",p->side_a, p->side_b, p->side_c, p->var_angle, p->terulet, p->kerulet);
+		printf("%.2f, %.2f, %.2f - %.2f degree: %.2fcm - %.2fcm\n",p->side_a, p->side_b, p->side_c, p->var_angle, p->terulet, p->kerulet);
 		p = p -> next;
 	}
 }
@@ -49,7 +49,7 @@ void free_list_triangle(list_triangle *l0){
 		free(p);
 		p = tmp;
 	}
-	printf("Memorie freed.\n");
+	printf("Memorie freed(triangle).\n");
 }
 
 void triangle_length(list_triangle *l0, u32 *len){
@@ -66,7 +66,7 @@ void triangle_length(list_triangle *l0, u32 *len){
 float triangle_Terulet(float a,float b, float a_angle){
 	//float tmp = (180/PI)*a_angle;
 	float m_a = b*sin(a_angle);
-	return (a*m_a)/2;
+	return fabs((a*m_a)/2);
 }
 
 float triangle_Kerulet(float a0, float a1, float a2){
@@ -83,8 +83,8 @@ float triangle_Magassag(float b, float angle){
 
 float triangle_angle(float aa, float ba, float ca){
 	float cosfi = (pow(aa,2)+pow(ba,2)-pow(ca,2))/(2*aa*ba);
-	//cosfi = acos(cosfi)*(180/PI);
-	cosfi = acos(cosfi);
+	cosfi = acos(cosfi)*(180/PI);
+	//cosfi = acos(cosfi);
 	return cosfi;
 }
 
