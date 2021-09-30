@@ -48,3 +48,16 @@ void comp_list_freelist(comp_list *lc){
 	}
 	printf("Memorie freed(complex).\n");
 }
+
+void comp_list_length(comp_list *lc, u16 *var_len){
+	comp_list *tmp = lc;
+	u16 len = 0;
+	//*var_len = 0;
+
+	while(tmp != NULL){
+		//*var_len++;
+		len++;
+		tmp = tmp->next;
+	}
+	*var_len = len; 
+}

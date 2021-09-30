@@ -15,7 +15,7 @@ comp_list *push_backward_complex(comp_list *lc, float Re, float Im);
 comp_list *push_forward_complex(comp_list *lc, float Re, float Im);
 void comp_list_print(comp_list *lc);
 void comp_list_freelist(comp_list *lc);
-
+void comp_list_length(comp_list *lc, u16 *var_len);
 
 
 

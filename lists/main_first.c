@@ -79,9 +79,11 @@ int main(int argc, char *argv[]){
 		tmp_08 -= 1.2;
 	}
 	comp_list_print(list_comp);
-	
+	u16 len_comp = 0;
+	comp_list_length(list_comp, &len_comp); 
+	printf("Complex list length: %d\n", len_comp);
+
 	comp_list_freelist(list_comp);
 
-	
 	return 0;
 }
