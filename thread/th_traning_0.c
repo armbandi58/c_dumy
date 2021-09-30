@@ -10,6 +10,7 @@ sem_t *s1;
 static const char *semname_0 = "sema0";
 static const char *semname_1 = "sema1";
 volatile u32 X = 0, Y = 0;
+volatile u8 i0 = 0, i1 = 0, i2 = 0, i3 = 0;
 
 int main(int argc, char *argv[])
 {
@@ -54,7 +55,8 @@ int main(int argc, char *argv[])
 }
 
 void *func_th00(void *args){
-	while(1){
+	//while(1){
+	for(u8 i = 0; i < 11; i++){
 		sem_wait(s0);
 		printf("-TH00-ból, X: %d.\n", X );		
 		printf("===\n");
@@ -63,45 +65,52 @@ void *func_th00(void *args){
 		usleep(2000000);
 		sem_post(s0);
 	}
+	pthread_exit(NULL);
 }
 
 void *func_th01(void *args){
 	usleep(20);
-	while(1){
+	//while(1){
+	for(u8 i = 0; i < 11; i++){
 		sem_wait(s0);
 		printf("-TH01-ból, X: %d.\n", X );
 		printf("===\n");
 		//usleep(500000);
 		X++;
-		usleep(2000000);
+		usleep(3000000);
 		sem_post(s0);
 	}
+	pthread_exit(NULL);
 }
 
 void *func_th02(void *args){
-	while(1){
+//	while(1){
+	for(u8 i = 0; i < 11; i++){
 		sem_wait(s1);
 		printf("-TH02-ból, Y: %d.\n", Y );
 		printf("===\n");
 		//usleep(500000);
 		//printf(");
 		Y++;
-		usleep(5000000);
+		usleep(2000000);
 		sem_post(s1);
 	}
+	pthread_exit(NULL);
 }
 
 void *func_th03(void *args){
 	usleep(20);
-	while(1){
+	//while(1){
+	for(u8 i = 0; i < 11; i++){
 		sem_wait(s1);
 		printf("-TH03-ból, Y: %d.\n", Y );
 		printf("===\n");
 		//usleep(500000);
 		Y++;
-		usleep(2000000);
+		usleep(3000000);
 		sem_post(s1);
 	}
+	pthread_exit(NULL);
 }
 
 
