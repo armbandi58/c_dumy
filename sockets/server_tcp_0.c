@@ -7,7 +7,7 @@ int main()
 	char buffer[80];
 	struct sockaddr_in address;
 	
-	printf("Kapcsolat aktív.\n");
+	printf("Kapcsolat aktív. \n");
 
 	socket_server = socket(AF_INET, SOCK_STREAM, 0);
 
