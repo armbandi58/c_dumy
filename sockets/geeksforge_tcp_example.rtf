@@ -4,665 +4,646 @@
 \red98\green94\blue76;\red244\green0\blue95;\red88\green209\blue235;\red224\green213\blue97;}
 {\*\expandedcolortbl;;\cssrgb\c97255\c97255\c94902;\cssrgb\c15294\c15686\c13333;\cssrgb\c100000\c100000\c100000;
 \cssrgb\c45882\c44314\c36863;\cssrgb\c97647\c14902\c44706;\cssrgb\c40000\c85098\c93725;\cssrgb\c90196\c85882\c45490;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh15460\viewkind0
 \deftab720
 \pard\pardeftab720\sl352\partightenfactor0
 
 \f0\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 #include <stdio.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+	
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <netdb.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #define MAX 80
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <netinet/in.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #define PORT 8080
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <stdlib.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <string.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <sys/socket.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <sys/types.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #define MAX 80
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #define PORT 8080
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #define SA struct sockaddr
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #define SA struct sockaddr
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf5 \strokec5 // Function designed for chat between client and server.
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf5 // Function designed for chat between client and server.
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\f1\b\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 void
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 func(
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 int
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 sockfd)
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf6 void
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 func(
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 int
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 sockfd)
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 char
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 buff[MAX];
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 char
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 buff[MAX];
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 int
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 n;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 int
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 n;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // infinite loop for chat
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // infinite loop for chat
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 for
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (;;) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 for
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (;;) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 bzero(buff, MAX);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 \strokec5 // read the message from client and copy it in buffer
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 read(sockfd, buff, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (buff));
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 \strokec5 // print buffer which contains the client contents
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "From client: %s\\t To client : "\cf2 \strokec2 , buff);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 bzero(buff, MAX);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 n = 0;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 \strokec5 // copy server message in the buffer
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 while
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ((buff[n++] = 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 getchar
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ()) != \cf8 \strokec8 '\\n'\cf2 \strokec2 )
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 ;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 bzero(buff, MAX);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 \strokec5 // and send that buffer to client
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 // read the message from client and copy it in buffer
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 write(sockfd, buff, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (buff));
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 read(sockfd, buff, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (buff));
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 // print buffer which contains the client contents
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "From client: %s\\t To client : "\cf2 , buff);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 bzero(buff, MAX);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 n = 0;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 // copy server message in the buffer
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 while
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ((buff[n++] = 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 getchar
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ()) != \cf8 '\\n'\cf2 )
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 ;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 \strokec5 // if msg contains "Exit" then server exit and chat ended.
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 // and send that buffer to client
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 write(sockfd, buff, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (buff));
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf5 // if msg contains "Exit" then server exit and chat ended.
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 if
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 strncmp
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "exit"\cf2 \strokec2 , buff, 4) == 0) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 if
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 strncmp
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "exit"\cf2 , buff, 4) == 0) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "Server Exit...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "Server Exit...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 break
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 break
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf5 \strokec5 // Driver function
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf5 // Driver function
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\f1\b\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 int
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 main()
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf7 int
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 main()
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 int
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 sockfd, connfd, len;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 int
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 sockfd, connfd, len;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 struct
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 sockaddr_in servaddr, cli;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 struct
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 sockaddr_in servaddr, cli;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // socket create and verification
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // socket create and verification
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 sockfd = socket(AF_INET, SOCK_STREAM, 0);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 if
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (sockfd == -1) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "socket creation failed...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 exit
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (0);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 sockfd = socket(AF_INET, SOCK_STREAM, 0);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 else
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 if
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (sockfd == -1) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "Socket successfully created..\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "socket creation failed...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 bzero(&servaddr, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (servaddr));
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 exit
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (0);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 else
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "Socket successfully created..\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 bzero(&servaddr, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (servaddr));
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // assign IP, PORT
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // assign IP, PORT
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 servaddr.sin_family = AF_INET;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 servaddr.sin_family = AF_INET;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 servaddr.sin_port = htons(PORT);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // Binding newly created socket to given IP and verification
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 if
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ((bind(sockfd, (SA*)&servaddr, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (servaddr))) != 0) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "socket bind failed...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 exit
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (0);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 else
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "Socket successfully binded..\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 servaddr.sin_port = htons(PORT);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // Now server is ready to listen and verification
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // Binding newly created socket to given IP and verification
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 if
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ((listen(sockfd, 5)) != 0) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 if
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ((bind(sockfd, (SA*)&servaddr, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (servaddr))) != 0) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "Listen failed...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "socket bind failed...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 exit
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (0);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 exit
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (0);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 else
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 else
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "Server listening..\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 len = 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (cli);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "Socket successfully binded..\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // Accept the data packet from client and verification
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 connfd = accept(sockfd, (SA*)&cli, &len);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // Now server is ready to listen and verification
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 if
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (connfd < 0) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 if
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ((listen(sockfd, 5)) != 0) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "server accept failed...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "Listen failed...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 exit
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (0);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 exit
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (0);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 else
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 else
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "server accept the client...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "Server listening..\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 len = 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (cli);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // Function for chatting between client and server
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // Accept the data packet from client and verification
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 func(connfd);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 connfd = accept(sockfd, (SA*)&cli, &len);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 if
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (connfd < 0) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "server accept failed...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 exit
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (0);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 else
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "server accept the client...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // After chatting close the socket
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // Function for chatting between client and server
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 close(sockfd);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 func(connfd);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // After chatting close the socket
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 close(sockfd);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \
 \
 Client:\
 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #include <netdb.h>
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #include <stdio.h>
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #include <stdlib.h>
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #include <string.h>
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #include <sys/socket.h>
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #define MAX 80
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #define PORT 8080
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 #define SA struct sockaddr
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <netdb.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <stdio.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <stdlib.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <string.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #include <sys/socket.h>
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #define MAX 80
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #define PORT 8080
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 #define SA struct sockaddr
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf6 void
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 func(
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 int
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 sockfd)
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\f1\b\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 void
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 func(
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 int
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 sockfd)
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-\pard\pardeftab720\sl352\partightenfactor0
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 char
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 buff[MAX];
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 char
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 buff[MAX];
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 int
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 n;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 int
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 n;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 for
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (;;) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 for
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (;;) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 bzero(buff, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (buff));
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "Enter the string : "\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 n = 0;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 bzero(buff, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (buff));
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 while
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ((buff[n++] = 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 getchar
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ()) != \cf8 \strokec8 '\\n'\cf2 \strokec2 )
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "Enter the string : "\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 ;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 write(sockfd, buff, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (buff));
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 bzero(buff, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (buff));
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 read(sockfd, buff, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (buff));
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 n = 0;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "From Server : %s"\cf2 \strokec2 , buff);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 while
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ((buff[n++] = 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 getchar
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ()) != \cf8 '\\n'\cf2 )
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 ;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 write(sockfd, buff, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (buff));
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 bzero(buff, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (buff));
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 read(sockfd, buff, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (buff));
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 if
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ((
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 strncmp
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (buff, \cf8 \strokec8 "exit"\cf2 \strokec2 , 4)) == 0) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "From Server : %s"\cf2 , buff);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 if
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ((
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 strncmp
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (buff, \cf8 "exit"\cf2 , 4)) == 0) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "Client Exit...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "Client Exit...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 break
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 ;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 break
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 ;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 \pard\pardeftab720\sl352\partightenfactor0
 
-\f1\b\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 int
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 main()
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf7 int
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 main()
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 int
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 sockfd, connfd;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 int
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 sockfd, connfd;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 struct
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 sockaddr_in servaddr, cli;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 struct
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 sockaddr_in servaddr, cli;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // socket create and varification
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // socket create and varification
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 sockfd = socket(AF_INET, SOCK_STREAM, 0);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 if
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (sockfd == -1) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "socket creation failed...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 exit
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (0);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
-
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 sockfd = socket(AF_INET, SOCK_STREAM, 0);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 else
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 if
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (sockfd == -1) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "Socket successfully created..\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "socket creation failed...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 bzero(&servaddr, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (servaddr));
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 exit
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (0);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 else
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "Socket successfully created..\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
+
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 bzero(&servaddr, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (servaddr));
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // assign IP, PORT
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // assign IP, PORT
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 servaddr.sin_family = AF_INET;
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 servaddr.sin_family = AF_INET;
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 servaddr.sin_addr.s_addr = inet_addr(\cf8 \strokec8 "127.0.0.1"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 servaddr.sin_addr.s_addr = inet_addr(\cf8 "127.0.0.1"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 servaddr.sin_port = htons(PORT);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 servaddr.sin_port = htons(PORT);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // connect the client socket to server socket
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // connect the client socket to server socket
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 if
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4  
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (connect(sockfd, (SA*)&servaddr, 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 sizeof
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (servaddr)) != 0) \{
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 if
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4  
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (connect(sockfd, (SA*)&servaddr, 
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 sizeof
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (servaddr)) != 0) \{
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "connection with the server failed...\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "connection with the server failed...\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 exit
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (0);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 exit
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (0);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 \strokec6 else
-\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf6 else
+\f0\b0\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 \strokec7 printf
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 (\cf8 \strokec8 "connected to the server..\\n"\cf2 \strokec2 );
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf7 printf
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 (\cf8 "connected to the server..\\n"\cf2 );
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // function for chat
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // function for chat
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 func(sockfd);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 func(sockfd);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
 \fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0
 \fs24 \AppleTypeServices\AppleTypeServicesF65539 \'a0\
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 \strokec5 // close the socket
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf5 // close the socket
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 \strokec2 close(sockfd);
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \'a0\'a0\'a0\'a0\cf2 close(sockfd);
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 \pard\pardeftab720\sl352\partightenfactor0
 
-\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 \}
-\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \strokec4 \
+\fs29\fsmilli14667 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \}
+\fs24 \AppleTypeServices\AppleTypeServicesF65539 \cf4 \
 }
